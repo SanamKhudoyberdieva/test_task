@@ -1,43 +1,48 @@
 @media (max-width: 768px) {
-    .app-header {
-        padding: 15px;
+    .ss-header {
+        padding: 10px 0;
+    }
+
+    .ss-header h1 {
+        text-align: left;
+    }
+
+    .ss-main-background {
+        padding: 20px 0;
+    }
+
+    .breadcrumb {
+        margin-bottom: 20px;
     }
   
-    .app-main {
-        padding: 15px;
+    .ss-not-found h1 {
+        font-size: 4rem; 
     }
   
-    .heroes-list-title {
-        font-size: 1.5rem; /* Adjust title size on smaller screens */
+    .ss-not-found h2 {
+        font-size: 1.5rem; 
     }
   
-    .hero-item {
-        padding: 10px; /* Adjust padding for smaller screens */
+    .ss-not-found p {
+        font-size: 1rem; 
     }
-  
-    .load-more {
-        width: 100%; /* Make the button full width on smaller screens */
+
+    .ss-hero-detail-content {
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center; 
     }
-  
-    .not-found h1 {
-        font-size: 4rem; /* Adjust for smaller screens */
-    }
-  
-    .not-found h2 {
-        font-size: 1.5rem; /* Adjust for smaller screens */
-    }
-  
-    .not-found p {
-        font-size: 1rem; /* Adjust for smaller screens */
-    }
-  
-    .go-home {
-        padding: 0.5rem 1rem; /* Adjust for smaller screens */
-    }
-  }
     
-  @media (max-width: 480px) {
-      .app-title {
+    .ss-hero-detail-image {
+        width: 100%; 
+        margin-right: 0;
+    }
+    
+    .ss-hero-detail p {
+        justify-content: center; 
+     }
+    
+    .ss-hero-detail .ss-hero-name {
         font-size: 1.5em; 
-      }
-  }
+    }
+}

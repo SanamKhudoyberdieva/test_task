@@ -32,7 +32,7 @@ const HeroesList = () => {
   };
 
   if (loading) return <Spinner loading={loading} />;
-  if (error) return <p className="error-message">{error}</p>;
+  if (error) return <p className="ss-error-message">{error}</p>;
 
   return (
     <div className="ss-main-background">
@@ -50,7 +50,7 @@ const HeroesList = () => {
           ))}
         </div>
         {nextPage && (
-          <button className="ss-load-more" onClick={() => fetchHeroesData(nextPage)} aria-label="Load more heroes">
+          <button className="ss-primary-btn" onClick={() => fetchHeroesData(nextPage)} aria-label="Load more heroes">
             Load More
           </button>
         )}

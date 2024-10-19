@@ -10,14 +10,13 @@ import Footer from './components/Footer';
 import HeroesList from './pages/HeroList';
 import HeroDetail from './pages/HeroDetails'; 
 import NotFound from './pages/NotFound';
-import ScrollToTop from './components/ScrollToTop';
 import ScrollToTopButton from './components/ScrollToTop';
 
 const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTopButton />
-      <div className="app">
+      <div className="ss-main-container">
         <Header />
         <main>
           <Routes>
