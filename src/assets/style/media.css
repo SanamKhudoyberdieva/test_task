@@ -1,0 +1,43 @@
+@media (max-width: 768px) {
+    .app-header {
+        padding: 15px;
+    }
+  
+    .app-main {
+        padding: 15px;
+    }
+  
+    .heroes-list-title {
+        font-size: 1.5rem; /* Adjust title size on smaller screens */
+    }
+  
+    .hero-item {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+  
+    .load-more {
+        width: 100%; /* Make the button full width on smaller screens */
+    }
+  
+    .not-found h1 {
+        font-size: 4rem; /* Adjust for smaller screens */
+    }
+  
+    .not-found h2 {
+        font-size: 1.5rem; /* Adjust for smaller screens */
+    }
+  
+    .not-found p {
+        font-size: 1rem; /* Adjust for smaller screens */
+    }
+  
+    .go-home {
+        padding: 0.5rem 1rem; /* Adjust for smaller screens */
+    }
+  }
+    
+  @media (max-width: 480px) {
+      .app-title {
+        font-size: 1.5em; 
+      }
+  }
