@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import HeroCard from '../components/HeroCard'; 
 import { fetchHeroes } from '../api/getHeroes';
+import { Hero } from '../store/types/hero';
 
 const HeroesList = () => {
   const navigate = useNavigate(); 
-  const [heroes, setHeroes] = useState<any[]>([]);
+  const [heroes, setHeroes] = useState<Hero[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [nextPage, setNextPage] = useState<string | null>(null);
