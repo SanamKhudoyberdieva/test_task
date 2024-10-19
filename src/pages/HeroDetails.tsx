@@ -8,17 +8,15 @@ const HeroDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>(); 
   const [hero, setHero] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  
   useEffect(() => {
     const fetchHeroData = async () => {
       try {
-        const data = await fetchHeroById(id!);
+        const data = await fetchHeroById(id!); 
         setHero(data);
       } catch (err) {
-        setError('Failed to load hero data.');
+        console.error('Failed to fetch hero data:', err);
       } finally {
         setLoading(false);
       }
@@ -27,7 +25,7 @@ const HeroDetail = () => {
     fetchHeroData();
   }, [id]);
 
-  if (error) return <p className="error-message">{error}</p>;
+  if (loading) return <Spinner loading={loading} />;
 
   return (
     <div className="ss-main-background">
@@ -45,7 +43,7 @@ const HeroDetail = () => {
           <div className="ss-hero-detail-content">
             <img 
               src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} 
-              alt={`Image of ${hero.name}`}  
+              alt={hero.name} 
               className="ss-hero-detail-image" 
             />
             <div className="ss-hero-info">
