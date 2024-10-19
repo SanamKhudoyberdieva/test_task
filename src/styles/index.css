@@ -1,88 +1,263 @@
 body {
-    font-family: 'Arial', sans-serif; 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #f4f4f4; 
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
 }
-  
+
+.breadcrumb {
+  margin-bottom: 20px;
+  padding: 10px 0;
+  list-style: none;
+}
+
+.breadcrumb ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.breadcrumb-item {
+  cursor: pointer;
+  margin-right: 10px;
+  color: #000; 
+}
+
+.breadcrumb-item:hover {
+  text-decoration: underline; 
+}
+
+.breadcrumb-item.active {
+  color: gray; 
+  cursor: auto;
+}
+
+.breadcrumb-item.active:hover {
+  text-decoration: none;
+}
+
+
 .app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-  
+
 .app-header {
-    background-color: #282c34; 
-    color: white;
-    padding: 20px;
-    text-align: center;
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
-  
+
 .app-title {
-    margin: 0; 
+  margin: 0;
 }
-  
+
 .app-main {
-    flex: 1; 
-    padding: 20px;
+  flex: 1;
+  padding: 20px;
 }
-  
+
 .app-footer {
-    background-color: #282c34;
-    color: white;
-    text-align: center;
-    padding: 10px;
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+/* ScrollToTopButton Styles */
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #1c1c1c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  visibility: hidden; /* Hide by default */
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible; /* Show when scrolled down */
+}
+
+.scroll-to-top:hover {
+  background-color: #ffa500; /* Highlight color on hover */
+}
+
+.ss-main-background {
+  background-color: #cfcccc;
+  padding: 60px 0;
+}
+
+/* Heroes List Styles */
+.ss-heroes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.ss-hero-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.ss-hero-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.ss-hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.ss-hero-name {
+  font-size: 1.5em;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.ss-hero-details {
+  padding: 0 10px 10px;
+  text-align: center;
+}
+
+.ss-load-more {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ss-load-more:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
+/* Not Found Page Styles */
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+}
+
+.not-found h1 {
+  font-size: 6rem;
+  margin: 0;
+  color: #ff0000;
+}
+
+.not-found h2 {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+.not-found p {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+.go-home {
+  padding: 0.75rem 1.5rem;
+  background-color: #1c1c1c;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.go-home:hover {
+  background-color: #ffa500;
 }
 
 
 
 
 
-.heroes-list {
-    padding: 20px;
-    background-color: #f8f9fa;
-  }
-  
-  .heroes-list-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #343a40;
-  }
-  
-  .hero-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .hero-item {
-    padding: 15px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .hero-item:hover {
-    background-color: #e9ecef;
-  }
-  
-  .load-more {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .load-more:hover {
-    background-color: #0056b3;
-  }
-  
-  .error-message {
-    color: red;
-    font-weight: bold;
-  }
+
+
+
+
+
+/* styles.css */
+
+.ss-hero-detail-container {
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.ss-hero-detail-content {
+  display: flex;
+  align-items: center;
+}
+
+.ss-hero-detail-image {
+  width: 250px;
+  height: auto;
+  border-radius: 8px;
+  margin-right: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ss-hero-info {
+  flex: 1;
+}
+
+.ss-hero-info h2 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.ss-hero-detail p {
+  margin: 5px 0;
+}
+
+.ss-hero-detail strong {
+  color: #eb8602;
+}
+
+.back-button {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #eb8602;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
