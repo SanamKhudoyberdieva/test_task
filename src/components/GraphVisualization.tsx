@@ -1,4 +1,3 @@
-// src/components/GraphVisualization.tsx
 import React from 'react';
 import ReactFlow, { MiniMap, Controls, Background, Node } from 'react-flow-renderer';
 
