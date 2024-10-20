@@ -263,3 +263,22 @@ a {
   color: #282c34;
   margin: 0 10px;
 }
+
+.ss-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ss-spinner-text {
+  margin-top: 12px;
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+}
