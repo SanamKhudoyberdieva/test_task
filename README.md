@@ -17,11 +17,15 @@ This project is a Star Wars-themed web application that displays a list of Star 
 1. Clone the repo:
    ```bash
    git clone https://github.com/your-username/star-wars-heroes-graph.git
-  cd star-wars-heroes-graph
+   
+2. Navigate to the project directory:
+   ```bash
+   cd star-wars-heroes-graph
   
-2. Install the necessary packages:
-  npm install or yarn install
-  
-##### Running the Application
-
-1. npm start or yarn start
+3. Install the necessary packages:
+   ```bash
+   npm install
+   
+or if you're using yarn:
+   ```bash
+   yarn install
