@@ -3,4 +3,12 @@ export interface Hero {
     name: string;
     height: string;
     mass: string;
-};
+    films: string[];
+    starships: string[];
+}
+  
+export interface APIResponse<T> {
+    results: T[];
+    next: string | null;
+    previous: string | null;
+}
