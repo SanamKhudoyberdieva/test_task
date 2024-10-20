@@ -9,19 +9,11 @@ import ReactFlow, {
   ConnectionLineType,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
+import { Movie, Starship } from '../types';
 
 interface NodeData {
   label: string;
   type: 'hero' | 'movie' | 'starship';
-}
-
-interface Movie {
-  title: string;
-}
-
-interface Starship {
-  id: number;
-  name: string;
 }
 
 interface GraphProps {
@@ -33,42 +25,9 @@ interface GraphProps {
   starships: Starship[];
 }
 
-const nodeStyles: Record<string, React.CSSProperties> = {
-  hero: {
-    background: 'rgba(255, 204, 0, 0.9)',
-    color: '#000',
-    padding: '10px',
-    borderRadius: '8px',
-    border: '2px solid #ffd700',
-    width: '150px',
-    textAlign: 'center',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-  },
-  movie: {
-    background: 'rgba(76, 175, 80, 0.9)',
-    color: '#fff',
-    padding: '10px',
-    borderRadius: '8px',
-    border: '2px solid #388E3C',
-    width: '150px',
-    textAlign: 'center',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-  },
-  starship: {
-    background: 'rgba(33, 150, 243, 0.9)',
-    color: '#fff',
-    padding: '10px',
-    borderRadius: '8px',
-    border: '2px solid #1976D2',
-    width: '150px',
-    textAlign: 'center',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-  },
-};
-
 const CustomNode: React.FC<{ data: NodeData }> = ({ data }) => {
   return (
-    <div style={nodeStyles[data.type]}>
+    <div className={`${data.type}-node`}>
       <div>{data.label}</div>
       <Handle type="source" position={Position.Right} />
       <Handle type="target" position={Position.Left} />
@@ -109,7 +68,7 @@ const Graph: React.FC<GraphProps> = ({ hero, movies, starships }) => {
     })),
     ...starships.map((starship, index) => ({
       id: `movie-starship-${starship.id}`,
-      source: `movie-${index % movies.length}`, 
+      source: `movie-${index % movies.length}`,
       target: `starship-${starship.id}`,
       type: ConnectionLineType.SmoothStep,
       animated: true,

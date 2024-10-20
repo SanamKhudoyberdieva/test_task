@@ -1,8 +1,13 @@
 export interface Hero {
-    id: string;
+    id: number;
     name: string;
     height: string;
     mass: string;
+    birth_year: string;
+    gender: string;
+    hair_color: string;
+    skin_color: string;
+    eye_color: string;
     films: string[];
     starships: string[];
 }
