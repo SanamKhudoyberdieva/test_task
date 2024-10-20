@@ -27,17 +27,17 @@ This project is a Star Wars-themed web application that displays a list of Star 
    npm install
    
 or if you're using yarn:
-    ```bash
-      yarn install
+
+    yarn install
 
 ###### Running the Application
 
 To run the application in development mode, use:
-      ```bash
+
       npm start
       
 or if you're using yarn:
-    ```bash
+
     yarn start
       
 ####### Key Corrections Made:
