@@ -137,7 +137,7 @@ a {
   transform: scale(1.05); 
 }
 
-.ss-hero-info {
+.ss-hero-image-container .ss-hero-info {
   position: absolute; 
   bottom: 0; 
   left: 0; 
