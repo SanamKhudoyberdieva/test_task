@@ -79,7 +79,7 @@ a {
   min-height: 100vh;
 }
 
-#back-top {
+.back-top-button {
   position: fixed;
   display: flex;
   right: 20px;
@@ -95,13 +95,13 @@ a {
   z-index: 999;
 }
 
-#back-top.visible {
+.back-top-button.visible {
   visibility: visible;
   opacity: 0.9;
   transform: scale(1);
 }
 
-#back-top.visible:hover {
+.back-top-button.visible:hover {
   opacity: 1;
 }
 
