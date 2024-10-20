@@ -26,19 +26,20 @@ This project is a Star Wars-themed web application that displays a list of Star 
    ```bash
    npm install
    
-  or if you're using yarn:
-      ```bash
+or if you're using yarn:
+    ```bash
       yarn install
 
 ###### Running the Application
+
 To run the application in development mode, use:
       ```bash
-        npm start
-
+      npm start
+      
 or if you're using yarn:
-      ```bash
-        yarn start
-
+    ```bash
+    yarn start
+      
 ####### Key Corrections Made:
 1. **Consistent Markdown Formatting**: I fixed the indentation and ensured all code blocks are properly closed.
 2. **Section Headings**: Adjusted heading levels for clarity and consistency.
