@@ -10,13 +10,11 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
-// Define the data structure for nodes
 interface NodeData {
   label: string;
   type: 'hero' | 'movie' | 'starship';
 }
 
-// Define the shape of movie and starship objects
 interface Movie {
   title: string;
 }
@@ -26,7 +24,6 @@ interface Starship {
   name: string;
 }
 
-// Props for the Graph component
 interface GraphProps {
   hero: {
     id: number;
@@ -36,7 +33,6 @@ interface GraphProps {
   starships: Starship[];
 }
 
-// Node Styles
 const nodeStyles: Record<string, React.CSSProperties> = {
   hero: {
     background: 'rgba(255, 204, 0, 0.9)',
@@ -70,7 +66,6 @@ const nodeStyles: Record<string, React.CSSProperties> = {
   },
 };
 
-// Custom Node Component
 const CustomNode: React.FC<{ data: NodeData }> = ({ data }) => {
   return (
     <div style={nodeStyles[data.type]}>
@@ -82,7 +77,6 @@ const CustomNode: React.FC<{ data: NodeData }> = ({ data }) => {
 };
 
 const Graph: React.FC<GraphProps> = ({ hero, movies, starships }) => {
-  // Prepare nodes for the hero, movies, and starships
   const nodes: Node[] = [
     {
       id: hero.id.toString(),
@@ -104,7 +98,6 @@ const Graph: React.FC<GraphProps> = ({ hero, movies, starships }) => {
     })),
   ];
 
-  // Prepare edges for connections
   const edges: Edge[] = [
     ...movies.map((_, index) => ({
       id: `hero-movie-${index}`,
@@ -116,7 +109,7 @@ const Graph: React.FC<GraphProps> = ({ hero, movies, starships }) => {
     })),
     ...starships.map((starship, index) => ({
       id: `movie-starship-${starship.id}`,
-      source: `movie-${index % movies.length}`, // Connect starship to movie
+      source: `movie-${index % movies.length}`, 
       target: `starship-${starship.id}`,
       type: ConnectionLineType.SmoothStep,
       animated: true,

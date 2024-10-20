@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import Spinner from '../components/Spinner';
 import HeroCard from '../components/HeroCard'; 
-import { fetchHeroes } from '../api/getHeroes';
+import { fetchHeroes } from '../api/fetchHeroes';
 import { Hero } from '../store/types/hero';
 
 const HeroesList = () => {

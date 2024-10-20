@@ -4,7 +4,12 @@
     }
 
     .ss-header h1 {
-        text-align: left;
+        text-align: center; 
+        font-size: 2em; 
+    }
+
+    .ss-header-icon {
+        font-size: 0.7em; 
     }
 
     .ss-main-background {
@@ -14,15 +19,15 @@
     .breadcrumb {
         margin-bottom: 20px;
     }
-  
+
     .ss-not-found h1 {
         font-size: 4rem; 
     }
-  
+
     .ss-not-found h2 {
         font-size: 1.5rem; 
     }
-  
+
     .ss-not-found p {
         font-size: 1rem; 
     }
@@ -32,16 +37,16 @@
         align-items: center; 
         text-align: center; 
     }
-    
+
     .ss-hero-detail-image {
         width: 100%; 
         margin-right: 0;
     }
-    
+
     .ss-hero-detail p {
         justify-content: center; 
-     }
-    
+    }
+
     .ss-hero-detail .ss-hero-name {
         font-size: 1.5em; 
     }

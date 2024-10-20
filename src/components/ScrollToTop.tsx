@@ -1,5 +1,5 @@
 import $ from "jquery";
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const ScrollToTopButton = () => {

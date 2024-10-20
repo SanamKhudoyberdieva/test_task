@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; 
-import { fetchHeroById } from '../api/getHeroById';
+import { fetchHeroById } from '../api/fetchHeroById';
 import { fetchStarshipsByIds } from '../api/fetchStarshipsByIds';
-import { fetchFilmsByIds,  } from '../api/fetchFilmsByIds'; // Import the new functions
+import { fetchFilmsByIds,  } from '../api/fetchFilmsByIds'; 
 import Spinner from '../components/Spinner';
-import Graph from '../components/Graph'; // Assuming your Graph component is in this path
-
+import Graph from '../components/Graph'; 
 
 const HeroDetail = () => {
   const navigate = useNavigate();
@@ -15,22 +14,15 @@ const HeroDetail = () => {
   const [starships, setStarships] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  console.log("hero", hero)
-  console.log("starships", starships)
-  console.log("movies", movies)
-
-
   useEffect(() => {
     const fetchHeroData = async () => {
       try {
         const data = await fetchHeroById(id!);
         setHero(data);
 
-        // Fetch films based on film IDs from the hero
         const films = await fetchFilmsByIds(data.films); 
         setMovies(films);
 
-        // Fetch starships based on starship IDs from the hero
         const starships = await fetchStarshipsByIds(data.starships); 
         setStarships(starships);
       } catch (err) {

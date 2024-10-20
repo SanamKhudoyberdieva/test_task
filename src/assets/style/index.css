@@ -10,7 +10,6 @@ a {
   text-decoration: none;
 }
 
-/* Breadcrumb */
 .breadcrumb {
   margin-bottom: 60px;
   list-style: none;
@@ -42,14 +41,25 @@ a {
 }
 
 .ss-header {
-  background-color: #282c34;
-  color: white;
+  background: linear-gradient(135deg, #0d0516 0%, #474e5b 100%);
+  color: #ffffff;
   padding: 20px 0;
   text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .ss-header h1 {
   margin-bottom: 0;
+  font-size: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ss-header-icon {
+  margin: 0 8px; 
+  color: #FFD700; 
+  font-size: 1em; 
 }
 
 .ss-footer {
@@ -69,7 +79,6 @@ a {
   min-height: 100vh;
 }
 
-/* ScrollToTopButton Styles */
 #back-top {
   position: fixed;
   display: flex;
@@ -101,7 +110,6 @@ a {
   padding: 60px 0;
 }
   
-/* Heroes List Styles */
 .ss-heroes-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -110,48 +118,48 @@ a {
 }
 
 .ss-hero-item {
-  position: relative; /* Position relative for absolute children */
-  overflow: hidden; /* Hide overflow for image */
+  position: relative; 
+  overflow: hidden; 
 }
 
 .ss-hero-image-container {
-  position: relative; /* Position relative for absolute positioning of info */
+  position: relative; 
 }
 
 .ss-hero-image {
   width: 100%;
   height: auto;
   object-fit: cover;
-  transition: transform 0.2s ease; /* Optional for hover effect */
+  transition: transform 0.2s ease; 
 }
 
 .ss-hero-image-container:hover .ss-hero-image {
-  transform: scale(1.05); /* Optional: Slight zoom on hover */
+  transform: scale(1.05); 
 }
 
 .ss-hero-info {
-  position: absolute; /* Absolute positioning */
-  bottom: 0; /* Align at the bottom */
-  left: 0; /* Align to the left */
-  right: 0; /* Align to the right */
-  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-  color: white; /* Text color */
-  padding: 10px; /* Padding */
-  opacity: 0; /* Initially hidden */
-  transition: opacity 0.3s ease; /* Smooth transition */
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  background: rgba(0, 0, 0, 0.7); 
+  color: white; 
+  padding: 10px; 
+  opacity: 0; 
+  transition: opacity 0.3s ease; 
 }
 
 .ss-hero-image-container:hover .ss-hero-info {
-  opacity: 1; /* Show info on hover */
+  opacity: 1; 
 }
 
 .ss-hero-name {
-  font-size: 1.2em; /* Adjust font size as needed */
+  font-size: 1.2em; 
   margin: 0;
 }
 
 .ss-hero-details {
-  font-size: 0.9em; /* Adjust font size as needed */
+  font-size: 0.9em; 
   margin: 0;
 }
 
@@ -177,7 +185,6 @@ a {
   font-weight: bold;
 }
   
-/* Not Found Page Styles */
 .ss-not-found {
   display: flex;
   flex-direction: column;
@@ -255,10 +262,4 @@ a {
 .ss-hero-detail strong {
   color: #282c34;
   margin: 0 10px;
-}
-
-.react-flow-container {
-  width: 100%;
-  height: 600px; /* Adjust the height as needed */
-  border: 1px solid #ddd; /* Optional border for visualization */
 }

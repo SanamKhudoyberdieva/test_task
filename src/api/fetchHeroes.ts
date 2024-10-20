@@ -1,6 +1,5 @@
 import api from "./api";
 
-// Function to get heroes
 export const fetchHeroes = async (url: string) => {
   try {
     const response = await api.get(url);

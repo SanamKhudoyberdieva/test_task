@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import HeroesList from '../pages/HeroList';
-import { fetchHeroes } from '../api/getHeroes'; 
+import { fetchHeroes } from '../api/fetchHeroes'; 
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 
