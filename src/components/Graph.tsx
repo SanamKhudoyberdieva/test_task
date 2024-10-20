@@ -1,5 +1,14 @@
 import React from 'react';
-import { ReactFlow, MiniMap, Controls, Background, Handle, Position } from '@xyflow/react';
+import ReactFlow, {
+  Background,
+  Controls,
+  Handle,
+  Position,
+  Node,
+  Edge,
+  ConnectionLineType,
+} from 'reactflow';
+import 'reactflow/dist/style.css';
 
 // Define the data structure for nodes
 interface NodeData {
@@ -13,7 +22,7 @@ interface Movie {
 }
 
 interface Starship {
-  id: number; // Assuming starships have an id
+  id: number;
   name: string;
 }
 
@@ -24,11 +33,11 @@ interface GraphProps {
     name: string;
   };
   movies: Movie[];
-  starships: Starship[]; // Update to include id
+  starships: Starship[];
 }
 
-// Custom node styles with explicit typing
-const nodeStyles: { [key: string]: React.CSSProperties } = {
+// Node Styles
+const nodeStyles: Record<string, React.CSSProperties> = {
   hero: {
     background: 'rgba(255, 204, 0, 0.9)',
     color: '#000',
@@ -38,7 +47,6 @@ const nodeStyles: { [key: string]: React.CSSProperties } = {
     width: '150px',
     textAlign: 'center',
     boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-    transition: 'transform 0.2s',
   },
   movie: {
     background: 'rgba(76, 175, 80, 0.9)',
@@ -49,7 +57,6 @@ const nodeStyles: { [key: string]: React.CSSProperties } = {
     width: '150px',
     textAlign: 'center',
     boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-    transition: 'transform 0.2s',
   },
   starship: {
     background: 'rgba(33, 150, 243, 0.9)',
@@ -60,21 +67,13 @@ const nodeStyles: { [key: string]: React.CSSProperties } = {
     width: '150px',
     textAlign: 'center',
     boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-    transition: 'transform 0.2s',
   },
 };
 
 // Custom Node Component
 const CustomNode: React.FC<{ data: NodeData }> = ({ data }) => {
   return (
-    <div
-      style={nodeStyles[data.type]}
-      onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
-      onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-    >
-      {data.type === 'hero' && <i className="fas fa-user" />}
-      {data.type === 'movie' && <i className="fas fa-film" />}
-      {data.type === 'starship' && <i className="fas fa-space-shuttle" />}
+    <div style={nodeStyles[data.type]}>
       <div>{data.label}</div>
       <Handle type="source" position={Position.Right} />
       <Handle type="target" position={Position.Left} />
@@ -83,70 +82,61 @@ const CustomNode: React.FC<{ data: NodeData }> = ({ data }) => {
 };
 
 const Graph: React.FC<GraphProps> = ({ hero, movies, starships }) => {
-  // Calculate the number of movie and starship nodes
-  const movieCount = movies.length;
-  const starshipCount = starships.length;
-
-  // Calculate the positions for movies and starships based on available counts
-  const moviePositions = movies.map((_, index) => ({
-    x: (index - (movieCount - 1) / 2) * 200, // Center movies
-    y: -100, // Position movies above the hero
-  }));
-
-  const starshipPositions = starships.map((_, index) => ({
-    x: (index - (starshipCount - 1) / 2) * 200, // Center starships
-    y: 100, // Position starships below the hero
-  }));
-
-  const nodes = [
+  // Prepare nodes for the hero, movies, and starships
+  const nodes: Node[] = [
     {
       id: hero.id.toString(),
       data: { label: hero.name, type: 'hero' },
-      position: { x: 0, y: 0 }, // Center hero in the middle
-      type: 'custom',
+      position: { x: 0, y: 0 },
+      type: 'default',
     },
     ...movies.map((movie, index) => ({
       id: `movie-${index}`,
       data: { label: movie.title, type: 'movie' },
-      position: moviePositions[index], // Use calculated position
-      type: 'custom',
+      position: { x: 200 * (index - movies.length / 2), y: -200 },
+      type: 'default',
     })),
     ...starships.map((starship, index) => ({
-      id: `starship-${index}`,
+      id: `starship-${starship.id}`,
       data: { label: starship.name, type: 'starship' },
-      position: starshipPositions[index], // Use calculated position
-      type: 'custom',
+      position: { x: 200 * (index - starships.length / 2), y: 200 },
+      type: 'default',
     })),
   ];
 
-  const edges = [
+  // Prepare edges for connections
+  const edges: Edge[] = [
     ...movies.map((_, index) => ({
-      id: `edge-${hero.id}-${index}`,
+      id: `hero-movie-${index}`,
       source: hero.id.toString(),
       target: `movie-${index}`,
+      type: ConnectionLineType.SmoothStep,
       animated: true,
       style: { stroke: '#ffd700', strokeWidth: 2 },
     })),
     ...starships.map((starship, index) => ({
-      id: `edge-movie-${index}-${starship.id}`,
-      source: `movie-${index}`,
-      target: `starship-${index}`,
+      id: `movie-starship-${starship.id}`,
+      source: `movie-${index % movies.length}`, // Connect starship to movie
+      target: `starship-${starship.id}`,
+      type: ConnectionLineType.SmoothStep,
       animated: true,
       style: { stroke: '#1976D2', strokeWidth: 2 },
     })),
   ];
 
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      fitView
-      nodeTypes={{ custom: CustomNode }}
-      zoomOnScroll={false} // Disable zoom on scroll
-      zoomOnPinch={false} // Disable zoom on pinch
-    >
-      <Background gap={12} size={1} />
-    </ReactFlow>
+    <div style={{ height: 500 }}>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        nodeTypes={{ default: CustomNode }}
+        connectionLineType={ConnectionLineType.SmoothStep}
+        fitView
+      >
+        <Background gap={12} size={1} />
+        <Controls />
+      </ReactFlow>
+    </div>
   );
 };
 
