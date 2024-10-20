@@ -75,10 +75,10 @@ const HeroDetail = () => {
                 <p> <strong>Skin Color:</strong> {hero.skin_color}</p>
                 <p> <strong>Eye Color:</strong> {hero.eye_color}</p>
               </div>
-              <div className='ss-graph'>
-                <Graph hero={hero} movies={movies} starships={starships} />
-              </div>
             </div>
+          </div>
+          <div className='ss-graph'>
+            <Graph hero={hero} movies={movies} starships={starships} />
           </div>
         </div>
       </div>
