@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import HeroCard from '../components/HeroCard'; 
 import { fetchHeroes } from '../api/fetchHeroes';
-import { Hero } from '../store/types/hero';
+import { Hero } from '../types/hero';
 
 const HeroesList = () => {
   const navigate = useNavigate(); 

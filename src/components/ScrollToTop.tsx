@@ -1,42 +1,35 @@
-import $ from "jquery";
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 
 const ScrollToTopButton = () => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleScroll = () => {
-    const scrollTop = $(window).scrollTop();
-    const t = $("#back-top");
+    const scrollTop = window.scrollY;
 
-    if (scrollTop && scrollTop > 350) {
-      t.addClass("visible");
-    } else {
-      t.removeClass("visible");
+    if (buttonRef.current) {
+      if (scrollTop > 350) {
+        buttonRef.current.classList.add("visible");
+      } else {
+        buttonRef.current.classList.remove("visible");
+      }
     }
   };
 
-  const handleBackToTop = (e: { preventDefault: () => void }) => {
+  const handleBackToTop = (e: React.MouseEvent) => {
     e.preventDefault();
-    $("html, body").animate({ scrollTop: 0 }, 200);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
-    $(window).on("scroll", handleScroll);
-    const t = $("#back-top");
-    if (t.length) {
-      t.on("click", handleBackToTop);
-    }
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      $(window).off("scroll", handleScroll);
-      if (t.length) {
-        t.off("click", handleBackToTop);
-      }
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <Link to="#top" id="back-top">
+    <button ref={buttonRef} onClick={handleBackToTop} className="back-top-button" aria-label="Back to top">
       <svg
         width="16"
         height="16"
@@ -57,7 +50,7 @@ const ScrollToTopButton = () => {
           strokeLinejoin="round"
         />
       </svg>
-    </Link>
+    </button>
   );
 };
 
