@@ -1,5 +1,5 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import HeroesList from '../pages/HeroList';
 import * as api from '../api/fetchHeroes';
 
@@ -15,20 +15,20 @@ describe('HeroesList', () => {
     (api.fetchHeroes as jest.Mock).mockResolvedValue(mockHeroes);
   });
 
-  it('renders heroes and loads more on button click', async () => {
+  it('renders heroes and shows loading state initially', async () => {
     render(
       <MemoryRouter>
-        <HeroesList />
+        <Routes>
+          <Route path="/" element={<HeroesList />} />
+        </Routes>
       </MemoryRouter>
     );
 
     expect(screen.getByText('Loading...')).toBeInTheDocument();
 
-    await waitFor(() => {
-      expect(screen.getByText('Luke Skywalker')).toBeInTheDocument();
-    });
+    expect(await screen.findByText('Luke Skywalker')).toBeInTheDocument();
 
-    const loadMoreButton = screen.getByRole('button', { name: /load more/i });
+    const loadMoreButton = screen.queryByRole('button', { name: /load more/i });
     expect(loadMoreButton).not.toBeInTheDocument();
   });
 });

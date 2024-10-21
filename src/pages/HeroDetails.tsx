@@ -1,30 +1,43 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; 
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchHeroById } from '../api/fetchHeroById';
 import { fetchStarshipsByIds } from '../api/fetchStarshipsByIds';
-import { fetchFilmsByIds } from '../api/fetchFilmsByIds'; 
+import { fetchFilmsByIds } from '../api/fetchFilmsByIds';
 import Spinner from '../components/Spinner';
-import Graph from '../components/Graph'; 
+import Graph from '../components/Graph';
 import { Hero, Movie, Starship } from '../types';
 
 const HeroDetail: React.FC = () => {
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>(); 
-  const [hero, setHero] = useState<Hero | null>(null); 
+  const { id } = useParams<{ id: string }>();
+  const [hero, setHero] = useState<Hero | null>(null);
   const [movies, setMovies] = useState<Movie[]>([]);
   const [starships, setStarships] = useState<Starship[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchHeroData = async () => {
+      setLoading(true);
+      setError(null); 
+
       try {
-        const data = await fetchHeroById(id!);
+        if (!id) throw new Error("Hero ID is required");
+
+        const data = await fetchHeroById(id);
         setHero(data);
-        const films = await fetchFilmsByIds(data.films); 
-        setMovies(films);
-        const starshipsData = await fetchStarshipsByIds(data.starships); 
-        setStarships(starshipsData);
+
+        if (data.films && data.films.length > 0) {
+          const films = await fetchFilmsByIds(data.films);
+          setMovies(films);
+        }
+
+        if (data.starships && data.starships.length > 0) {
+          const starshipsData = await fetchStarshipsByIds(data.starships);
+          setStarships(starshipsData);
+        }
       } catch (err) {
+        setError('Failed to fetch hero data. Please try again later.');
         console.error('Failed to fetch hero data:', err);
       } finally {
         setLoading(false);
@@ -35,7 +48,7 @@ const HeroDetail: React.FC = () => {
   }, [id]);
 
   if (loading) return <Spinner loading={loading} />;
-
+  if (error) return <p className="ss-error-message">{error}</p>;
   if (!hero) return <p className="ss-error-message">Hero not found.</p>;
 
   return (
@@ -52,10 +65,10 @@ const HeroDetail: React.FC = () => {
 
         <div className="ss-hero-detail-container">
           <div className="ss-hero-detail-content">
-            <img 
-              src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} 
-              alt={hero.name} 
-              className="ss-hero-detail-image" 
+            <img
+              src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+              alt={hero.name}
+              className="ss-hero-detail-image"
             />
             <div className="ss-hero-info">
               <div className="ss-hero-detail">
